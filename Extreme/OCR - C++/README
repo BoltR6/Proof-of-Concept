@@ -1,0 +1,26 @@
+Optical character recognition is the gentle art of extracting text -- strings of characters -- from images of text (obtained, e.g. from photos, or by scanning paper documents). In this kata, you'll be given the image, and have to return a string containing the text shown in the image.
+
+To keep this simple, we'll be using OCR-A, a typeface designed in the 1960s to be easily machine-readable. To keep it simpler still, we'll limit ourselves to just reading numbers, so the only characters we have to recognize are the ten digits '0' through '9'. Here's what they look like in OCR-A.
+
+all ten digits in OCR-A
+
+The images will be passed using the following data structure.
+
+struct Image
+{
+ int width, height;
+ vector<unsigned> pixels;
+
+ Image(int w, int h, unsigned pixval);                  // pixel data constant
+ Image(int w, int h, initializer_list<unsigned> data);  // pixel data as given
+};
+The image data consists of a one-dimensional array pixels of integers (unsigned integers, in languages that make that distinction), which correspond to pixels in row-by-row order. (That is, the top row of pixels comes first, from left to right, then the second row, and so on, with the pixel in the bottom right corner last of all.) The values of the pixels array elements represent the brightness of the pixel on a grey scale, with 0 representing black and IMAGE_MAX (which is pre-defined to be 255) representing white.
+
+Each test image depicts exactly one string of digits in the OCR-A typeface.
+The digits are all the same size. Their height is at least 16 pixels, and at most 512 pixels.
+There are no characters other than digits, not even spaces.
+The images are monochrome, with dark text on a light background.
+The digits appear in the images the right way up. You don't need to handle upside-down or sideways text.
+The test suite includes some larger images, up to a few megapixels. These are not difficult to solve -- at this scale, the images are so detailed that any halfway-decent algorithm can hardly go wrong -- but execution speed may be an issue.
+
+The image quality in the test images looks pretty good to the human eye, but it's not perfect: there are some slight distortions intended to simulate scanning a page that wasn't perfectly flat, or was rotated slightly relative to its ideal orientation. The following images are typical of what you can expect from the tests.
