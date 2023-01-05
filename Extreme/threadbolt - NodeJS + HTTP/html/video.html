@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+	<head>
+			<title>${info.videoDetails.title}</title>
+			<meta name="ROBOTS" content="NOINDEX, NOFOLLOW"/>
+			<div class="header">
+				<h1><br></h1>
+			</div>
+	</head>
+	<style>
+		.header {
+			padding: 3px;
+			text-align: center;
+			background: black;
+			color: white;
+			font-size: 10px;
+			margin: 0%;
+			overflow: hidden;
+		}
+		.title {
+			padding: 15px;
+			text-align: center;
+			background: black;
+			color: white;
+			font-size: 20px;
+			margin: 0%;
+			overflow: hidden;
+		}
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.button {
+			background-color: black;
+			font-size: 18px;
+			color: white;
+			padding: 12px 18px;
+			border-radius: 0% 0% 10% 10%;
+			border: 2px solid black;
+			margin: 0%;
+			font-family: Verdana, Geneva, sans-serif;
+			cursor: pointer;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	</style>
+	<div class="container">
+		<button type="button" class="button" onclick=" window.location='/'">home</button>
+		<button type="button" class="button" onclick=" window.location='/t/http://www.youtube.com/'">youtube</button>
+		<button type="button" class="button"onclick=" window.location='/d/'">discord</button>
+		<button type="button" class="button" onclick="window.location='/p/'">proxy</button>
+	</div>
+	<body>
+			<p><br></p>
+			<h1 class="title">${info.videoDetails.title}</h1>
+			<video controls poster="${thumb.url}" style="width: 100%">
+					${formats
+	.map(
+		(format) =>
+				`  <source type="${format.mimeType
+					.split(";")
+					.shift()}" src="/${prefix}/${format.url.replace(/&/g, "&amp;")}">`
+		)
+		.join("\n")}
+			</video>
+	</body>		
+</html>
