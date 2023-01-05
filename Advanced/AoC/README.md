@@ -1,5 +1,8 @@
 # Advent of Code Challenge - Supply Stacks
 ## (another proof of why Regex and 'i', 'a', '\_' are _terrible_ for readability)
+A friend of mine always aims for 'one-liners', and keeping code to a minimum.
+Having written an entire paper before on why this is bad practice, I decided to prove it to him.
+His solution was 40 lines and mine is 3. Under no circumstances is mine more readable, so I think I won the bet.
 
 ### Directions:
 The expedition can depart as soon as the final supplies have been unloaded from the ships. Supplies are stored in stacks of marked crates, but because the needed supplies are buried under many other crates, the crates need to be rearranged.
