@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<title>Google Classroom</title>
+<link rel="icon" type="image/png" href="https://ssl.gstatic.com/classroom/favicon.png">
+
+<head>
+	<script src="https://cdn.jsdelivr.net/npm/p5@1.3.1/lib/p5.js">
+
+	</script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/addons/p5.dom.js">
+
+	</script>
+
+	<style type="text/css">
+		canvas {
+			border: 0px none black;
+		}
+	</style>
+	<script>
+		var dots = [];
+		var maxdots;
+		var maxconnections = 25;
+		var fade = 255;
+		function setup(){
+			var can = createCanvas(windowWidth,135);
+  		can.style('display', 'block');
+  		can.position(0, 0);
+			can.style.border = "none";
+			angleMode(DEGREES)
+
+			maxdots = windowWidth/14;
+			while(dots.length < maxdots){ 
+				dots.push([Math.random()*windowWidth,Math.random()*120,Math.random()*360,Math.random()*5+1]);
+			}
+		}
+		function draw(){
+			background(0,0,0)
+			fade = fade - 1 * (deltaTime/5);
+			for(var i = 0;i < dots.length;i++){
+				noStroke();
+				fill(255);
+				ellipse(dots[i][0],dots[i][1],5,5);
+				dots[i][0] += cos(dots[i][2])*dots[i][3] * deltaTime / 100;
+				dots[i][1] += sin(dots[i][2])*dots[i][3] * deltaTime / 100;
+				if(dots[i][1] > 120){
+					dots[i][1] = 50;
+				}
+				if(dots[i][0] < 2.5 || dots[i][0] > windowWidth - 2.5 || dots[i][1] < 2.5 || dots[i][1] > 117.5){
+					dots[i][2] = dots[i][2]+180;
+				}
+				var connections = 0;
+				for(var g = 0;g < dots.length;g++){
+					if(dist(dots[i][0],dots[i][1],dots[g][0],dots[g][1]) < 25){
+						connections ++;
+						stroke(255);
+						strokeWeight(5-dist(dots[i][0],dots[i][1],dots[g][0],dots[g][1])/5);
+						line(dots[i][0],dots[i][1],dots[g][0],dots[g][1]);
+					}
+				}
+			}
+			textSize(35);
+			textAlign(CENTER);
+			stroke(255);
+			strokeWeight(2);
+			fill(0,0,0);
+			text('threadbolt',windowWidth/2-1,69);
+			fill(255,255,255);
+			text('threadbolt',windowWidth/2,70);
+
+			fill(0,0,0,fade);
+			rect(0,0,windowWidth,120);
+			noStroke();
+		}
+	</script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>repl.it</title>
+	<style>
+		canvas {
+			margin: 0%;
+			shape-rendering: optimizeSpeed;
+			overflow: hidden;
+		}
+
+		.header {
+			padding: 30px;
+			text-align: center;
+			background: black;
+			color: white;
+			font-size: 10px;
+			margin: 0%;
+			overflow: hidden;
+		}
+
+		.forms {
+			padding: 30px;
+			text-align: center;
+			background: white;
+			color: black;
+			font-size: 18px;
+		}
+
+		.footers {
+			padding: 30px;
+			text-align: center;
+			background: black;
+			color: white;
+			font-size: 18px;
+			margin: 0%;
+			overflow: hidden;
+		}
+
+		.button {
+			background-color: black;
+			font-size: 18px;
+			color: white;
+			padding: 12px 18px;
+			border-radius: 0% 0% 10% 10%;
+			border: 2px solid black;
+			margin: 0%;
+			font-family: Verdana, Geneva, sans-serif;
+			cursor: pointer;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.container {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	</style>
+	<div class="header">
+		<h1><br></h1>
+	</div>
+</head>
+
+<body>
+	<div class="container">
+	<button type="button" class="button"onclick=" window.location='/'">home</button>
+	<button type="button" class="button" onclick=" window.location='/t/http://www.youtube.com/'">youtube</button>
+	<button type="button" class="button">discord</button>
+	<button type="button" class="button" onclick="window.location='/p/'">proxy</button>
+	</div>
+	<div class="forms">
+		<p>waiting on anon to finish his shit</p>
+<iframe id="Chuck" src="https://matter.oberweis.dev/" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+	</div>
+	  <script>
+
+    var myWindow = null;
+
+    function openMMWindow() {
+        myWindow = window.open("https://matter.oberweis.dev/enigma/channels/town-square", "Mattermost", "top=0,left=0,width=400,height=600,status=no,toolbar=no,location=no,menubar=no,titlebar=no");
+    }
+
+    function closeMMWindow() {
+        if (myWindow) {
+            myWindow.close();
+        }
+    }
+
+</script>
+
+
+    <br/>
+    <br/>
+    <button onclick="openMMWindow()">Open Developer Channel</button>
+    <br/>
+    <br/>
+    <button onclick="closeMMWindow()">Close Developer Channel</button>
+    <br/>
+    <br/>
+
+</body>
+
+</html>
